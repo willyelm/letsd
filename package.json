@@ -1,0 +1,37 @@
+{
+  "name": "letsd",
+  "version": "0.0.1",
+  "description": "Letsd –– simple task interface builder.",
+  "repository": "https://github.com/willyelm/letsd",
+  "author": "Williams Medina <williams.medinaa@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "lets",
+    "cli",
+    "terminal",
+    "console",
+    "progress",
+    "color",
+    "interface",
+    "builder"
+  ],
+  "scripts": {
+    "preinstall": "tsc",
+    "start": "tsc -w"
+  },
+  "engines": {
+    "node": ">=8.11.2"
+  },
+  "bin": {
+    "lets": "./lib/cli/index.js"
+  },
+  "main": "./lib/index.js",
+  "devDependencies": {
+    "@types/node": "^10.1.2",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "yamljs": "^0.3.0"
+  }
+}
