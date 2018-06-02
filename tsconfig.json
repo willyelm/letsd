@@ -2,9 +2,8 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "strict": true,
     "outDir": "./lib",
-    "esModuleInterop": true,
+    "strict": false,
     "sourceMap": true,
     "typeRoots": [
       "node_modules/@types"

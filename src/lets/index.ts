@@ -1,41 +1,66 @@
-export * from './arg';
-export * from './flag';
+import { exec } from 'child_process';
+import { Argument, ArgumentType, Arguments, ArgumentParser } from './argument';
 
-import { Arguments } from './arg';
-import { Flags, Flag } from './flag';
-import { Options } from './option';
-import { Commands, Command } from './command';
+const parser = new ArgumentParser();
+// Remove first (0: node binary path, 1: lets binary path)
+const argv: string[] = process.argv.slice(2);
+// Get arguments list 
 
-export function Lets () {
-  const binName = 'lets';
-  const commands: Commands = {};
-  return Object.freeze({
-    getOptions: () => {
-      const argv = process.argv.slice(2);
-      return Options(argv).value;
-    },
-    addCommand: (name: string, options: Command) => {
-      commands[name] = options;
-    },
-    startWithOptions (args: Arguments, flags: Flags) {
-      const commandName = args.shift();
-      const command = commandName
-        ? commands[<string> commandName] 
-        : undefined;
-      if (command) {
-        console.log('starting...', command);
-        console.log(args);
-        console.log(flags);
-      } else if (commandName) {
-        process.stdout.write(`${binName}: '${commandName}' is not a ${binName} command.\n`);
-        process.stdout.write(`See '${binName} --help'\n`);
-      } else {
-        process.stdout.write(`show help\n`);
-      }
-    },
-    start () {
-      const { args, flags } = this.getOptions();
-      return this.startWithOptions(args, flags);
-    }
-  });
+// const args: Arguments = parser.getArgs(argv);
+// export class Args {
+//   public value = args;
+//   getArg (type: ArgumentType, id: string | number) {
+//     return this.value.find(
+//       (arg: Argument) => {
+//         return arg.type === ArgumentType.Index 
+//           && arg.id === id;
+//       }
+//     );
+//   }
+//   getIndex (id: number) {
+//     return this.getArg(ArgumentType.Index, id);
+//   }
+//   getFlag (id: string) {
+//     return this.getArg(ArgumentType.Flag, id);
+//   }
+// }
+
+export interface ArgsConfig {
+  [key: string]: {
+    type: ArgumentType,
+    description: string,
+    shortcut: string,
+    value: any
+  }
+}
+
+export interface TasksConfig {
+  [key: string]: {
+    args: string[],
+    command: Function
+  }
+}
+
+export const Arg = {
+  get (config: ArgsConfig) {
+    const values = {};
+    Object.keys(config).forEach((name: string) => {
+      const value = config[name];
+      console.log('value', value);
+    });
+    return values;
+  }
+}
+
+export class Interface {
+  tasks (config: TasksConfig) {
+    const values = {};
+    Object.keys(config).forEach((name: string) => {
+      const value = config[name];
+    });
+    return values;
+  }
+  start (commandName: string) {
+
+  }
 }
