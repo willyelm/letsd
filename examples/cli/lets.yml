@@ -1,0 +1,16 @@
+tasks:
+  work:
+    description: Start something awesome
+    commands: 
+      - echo "Hello $name"
+    args: 
+      - name
+
+args:
+  file:
+    type: index
+    description: Specify which file to start
+  debug:
+    type: flag
+    description: Enable debugging mode
+    shortcut: d
